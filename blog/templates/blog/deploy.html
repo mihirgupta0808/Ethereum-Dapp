@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h2>Deploy NFT</h2>
+
+    { with posts|last as post }
+        <article class="post">
+            <time class="date">
+                {{ posts.last.published_date }}
+            </time>
+            <h2><a href={{ posts.last.openseaurl }}>{{ posts.last.title }}</a></h2>
+            <p>{{ posts.last.text|linebreaksbr }}</p>
+            <p>IPFS -
+                <a href={{ posts.last.ipfspath }}>
+                    <img alt="Test" src={{posts.last.ipfspath}} width="150" height="70">
+                {{ posts.last.ipfspath }}
+                </a>
+            </p>
+            <p>Metadata -  <a href={{ posts.last.metadatapath }}> {{ posts.last.metadatapath }} </a></p>
+            <p>Contract Address - {{ posts.last.contractaddress }}</p>
+            <p>OpenSea URL -
+                <a href={{posts.last.openseaurl}}>
+                    {{ posts.last.openseaurl }}
+                </a>
+            </p>
+        </article>
+    { endwith }
+
+
+    <form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
+        <p> Press submit for deploying the NFT on etherium blockchain</p>
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+{% endblock %}
