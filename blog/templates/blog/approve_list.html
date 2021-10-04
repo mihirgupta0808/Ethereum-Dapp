@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <h2>Approve/Publish New NFT</h2>
+
+
+    {% for post in posts reversed %}
+        <article class="post">
+
+            <time class="date">
+                Publish Date - {{ post.published_date }}
+            </time>
+            <h2>NFT Title -  <a href={{ post.openseaurl }}>{{ post.title }}</a></h2>
+            <p>Record Number - {{ post.pk }} </p>
+            <p>Description - {{ post.text|linebreaksbr }}</p>
+            <p>Author - {{ post.author }}</p>
+            <p>Submit Date - <time class="date"> {{ post.created_date }} </time> </p>
+
+            <p>IPFS -
+                <a href={{ post.ipfspath }}>
+                    <img alt="Test" src={{post.ipfspath}} width="150" height="70">
+                {{ post.ipfspath }}
+                </a>
+            </p>
+            <!--
+            <p>Metadata -  <a href={{ post.metadatapath }}> {{ post.metadatapath }} </a></p>
+            <p>Contract Address - {{ post.contractaddress }}</p>
+            <p>OpenSea URL -
+                <a href={{post.openseaurl}}>
+                    {{ post.openseaurl }}
+                </a>
+            </p>
+            -->
+        </article>
+    {% endfor %}
+
+
+
+    <form enctype="multipart/form-data" method="POST" class="approval-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Approve/Publish/Save</button>
+    </form>
+
+{% endblock %}
+
