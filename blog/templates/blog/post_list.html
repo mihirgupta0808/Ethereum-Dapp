@@ -3,12 +3,16 @@
 {% block content %}
     {% for post in posts reversed %}
         <article class="post">
+
             <time class="date">
-                {{ post.published_date }}
+                Publish Date - {{ post.published_date }}
             </time>
             <h2>NFT Title -  <a href={{ post.openseaurl }}>{{ post.title }}</a></h2>
+            <p>Record Number - {{ post.pk }} </p>
             <p>Description - {{ post.text|linebreaksbr }}</p>
             <p>Author - {{ post.author }}</p>
+            <p>UPI - {{ post.upi }}</p>
+            <p>Submit Date - <time class="date"> {{ post.created_date }} </time> </p>
 
             <p>IPFS -
                 <a href={{ post.ipfspath }}>
@@ -16,13 +20,23 @@
                 {{ post.ipfspath }}
                 </a>
             </p>
-            <p>Metadata -  <a href={{ post.metadatapath }}> {{ post.metadatapath }} </a></p>
-            <p>Contract Address - {{ post.contractaddress }}</p>
+            
+            <p>Contract Address -
+                <a href={{post.contractaddress}}>
+                    {{ post.contractaddress }}
+                </a>
+            </p>
+           
             <p>OpenSea URL -
                 <a href={{post.openseaurl}}>
                     {{ post.openseaurl }}
                 </a>
             </p>
+            <!--
+            <p>Metadata -  <a href={{ post.metadatapath }}> {{ post.metadatapath }} </a></p>
+
+
+            -->
         </article>
     {% endfor %}
 {% endblock %}

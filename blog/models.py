@@ -13,7 +13,9 @@ class Post(models.Model):
     metadatapath = models.CharField(max_length=300)
     contractaddress = models.CharField(max_length=300)
     openseaurl = models.CharField(max_length=300)
-    nftimagefile = models.ImageField(upload_to = "uploads/")
+    nftimagefile = models.FileField(upload_to = "uploads/")
+    is_approved = models.BooleanField(default=False)
+    upi = models.CharField(max_length=400)
 
     def publish(self):
         self.published_date = timezone.now()

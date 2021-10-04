@@ -8,7 +8,11 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'nftimagefile')
+        fields = ('title','text','upi','nftimagefile')
+
+class ApproveForm(forms.Form):
+        record_number = forms.IntegerField()
+
 
 #class SignUpForm(UserCreationForm):
 #    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
